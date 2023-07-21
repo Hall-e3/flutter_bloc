@@ -1,3 +1,4 @@
+import 'package:bloc_demo/logic/blocs/bloc_exports.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/models/task.dart';
@@ -19,7 +20,11 @@ class TasksList extends StatelessWidget {
             var task = tasksList[index];
             return ListTile(
               title: Text(task.title),
-              trailing: Checkbox(value: task.isDone, onChanged: (value) {}),
+              trailing: Checkbox(
+                  value: task.isDone,
+                  onChanged: (value) {
+                    context.read<TasksBloc>().add(UpdateTask(task: task));
+                  }),
             );
           }),
     );
