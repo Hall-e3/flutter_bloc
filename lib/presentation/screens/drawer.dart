@@ -30,13 +30,17 @@ class CustomDrawer extends StatelessWidget {
               },
             ),
             const Divider(),
-            GestureDetector(
-              onTap: () => Navigator.of(context).pushNamed(RecycleBin.id),
-              child: const ListTile(
-                leading: Icon(Icons.delete),
-                title: Text("Bin"),
-                trailing: Text("0"),
-              ),
+            BlocBuilder<TasksBloc, TasksState>(
+              builder: (context, state) {
+                return GestureDetector(
+                  onTap: () => Navigator.of(context).pushNamed(RecycleBin.id),
+                  child: ListTile(
+                    leading: const Icon(Icons.delete),
+                    title: const Text("Bin"),
+                    trailing: Text("${state.removedTasks}"),
+                  ),
+                );
+              },
             )
           ],
         ),
