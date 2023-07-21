@@ -5,16 +5,19 @@ import '../widgets/add_tasks_container.dart';
 import "../widgets/tasks_list.dart";
 
 // ignore: must_be_immutable
-class TasksScreen extends StatelessWidget {
-  TasksScreen({super.key});
+class TasksScreen extends StatefulWidget {
+  const TasksScreen({super.key});
 
-  TextEditingController titleController = TextEditingController();
+  @override
+  State<TasksScreen> createState() => _TasksScreenState();
+}
 
+class _TasksScreenState extends State<TasksScreen> {
   void _addTask(BuildContext context) {
     showModalBottomSheet(
         context: context,
-        builder: (context) => SingleChildScrollView(
-              child: AddTaskContainer(titleController: titleController),
+        builder: (context) => const SingleChildScrollView(
+              child: AddTaskContainer(),
             ));
   }
 
@@ -27,7 +30,9 @@ class TasksScreen extends StatelessWidget {
           appBar: AppBar(
             title: const Text("Tasks App"),
             actions: [
-              IconButton(onPressed: () {}, icon: const Icon(Icons.add))
+              IconButton(
+                  onPressed: () => _addTask(context),
+                  icon: const Icon(Icons.add))
             ],
           ),
           body: Column(

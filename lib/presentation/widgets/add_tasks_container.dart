@@ -5,13 +5,11 @@ import 'package:flutter/material.dart';
 class AddTaskContainer extends StatelessWidget {
   const AddTaskContainer({
     super.key,
-    required this.titleController,
   });
-
-  final TextEditingController titleController;
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController titleController = TextEditingController();
     return Container(
       padding:
           EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
