@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../logic/blocs/bloc_exports.dart';
 import 'recycle_bin.dart';
 import 'tasks_screen.dart';
 
@@ -16,13 +17,17 @@ class CustomDrawer extends StatelessWidget {
               child: Text("Task Drawer",
                   style: TextStyle(color: Colors.grey.shade400)),
             ),
-            GestureDetector(
-              onTap: () => Navigator.of(context).pushNamed(TasksScreen.id),
-              child: const ListTile(
-                leading: Icon(Icons.folder_special),
-                title: Text("My Tasks"),
-                trailing: Text("0"),
-              ),
+            BlocBuilder<TasksBloc, TasksState>(
+              builder: (context, state) {
+                return GestureDetector(
+                  onTap: () => Navigator.of(context).pushNamed(TasksScreen.id),
+                  child: ListTile(
+                    leading: const Icon(Icons.folder_special),
+                    title: const Text("My Tasks"),
+                    trailing: Text("${state.allTasks.length}"),
+                  ),
+                );
+              },
             ),
             const Divider(),
             GestureDetector(
