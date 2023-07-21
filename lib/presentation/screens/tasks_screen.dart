@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../data/models/task.dart';
 import '../../logic/blocs/bloc_exports.dart';
+import '../widgets/add_tasks_container.dart';
 import "../widgets/tasks_list.dart";
 
 // ignore: must_be_immutable
@@ -13,17 +14,7 @@ class TasksScreen extends StatelessWidget {
     showModalBottomSheet(
         context: context,
         builder: (context) => SingleChildScrollView(
-              child: Container(
-                padding: EdgeInsets.only(
-                    bottom: MediaQuery.of(context).viewInsets.bottom),
-                child: Column(
-                  children: [
-                    TextField(
-                      controller: titleController,
-                    )
-                  ],
-                ),
-              ),
+              child: AddTaskContainer(titleController: titleController),
             ));
   }
 
