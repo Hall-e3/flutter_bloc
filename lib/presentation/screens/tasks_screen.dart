@@ -1,3 +1,4 @@
+import 'package:bloc_demo/presentation/screens/drawer.dart';
 import 'package:flutter/material.dart';
 import '../../data/models/task.dart';
 import '../../logic/blocs/bloc_exports.dart';
@@ -7,6 +8,7 @@ import "../widgets/tasks_list.dart";
 // ignore: must_be_immutable
 class TasksScreen extends StatefulWidget {
   const TasksScreen({super.key});
+  static const id = "tasks_screen";
 
   @override
   State<TasksScreen> createState() => _TasksScreenState();
@@ -35,6 +37,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   icon: const Icon(Icons.add))
             ],
           ),
+          drawer: const CustomDrawer(),
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
