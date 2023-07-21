@@ -11,8 +11,8 @@ class TasksState extends Equatable {
 
   Map<String, dynamic> toJson() {
     return {
-      "allTasks": allTasks.map((e) => e.toJson()).toList(),
-      "removedTasks": allTasks.map((e) => e.toJson()).toList(),
+      "allTasks": allTasks.map((x) => x.toJson()).toList(),
+      "removedTasks": allTasks.map((x) => x.toJson()).toList(),
     };
   }
 
