@@ -10,7 +10,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const RecycleBin());
       case TasksScreen.id:
         return MaterialPageRoute(builder: (_) => const TasksScreen());
+      default:
+        return null;
     }
-    return null;
   }
 }

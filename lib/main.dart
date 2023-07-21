@@ -1,3 +1,4 @@
+import 'package:bloc_demo/services/app_routes.dart';
 import 'package:flutter/foundation.dart';
 import 'package:bloc_demo/presentation/screens/tasks_screen.dart';
 import 'package:flutter/material.dart';
@@ -12,11 +13,14 @@ void main() async {
         ? HydratedStorage.webStorageDirectory
         : await getApplicationDocumentsDirectory(),
   );
-  runApp(const MyApp());
+  runApp(MyApp(
+    appRoutes: AppRoutes(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key, required this.appRoutes}) : super(key: key);
+  final AppRoutes appRoutes;
   @override
   Widget build(BuildContext context) {
     return BlocProvider<TasksBloc>(
@@ -28,6 +32,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         home: const TasksScreen(),
+        onGenerateRoute: appRoutes.onGenerateRoute,
       ),
     );
   }
