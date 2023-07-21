@@ -2,6 +2,8 @@ import 'package:bloc_demo/data/models/task.dart';
 import 'package:bloc_demo/logic/blocs/bloc_exports.dart';
 import 'package:flutter/material.dart';
 
+import '../../services/uuid_generator.dart';
+
 class AddTaskContainer extends StatelessWidget {
   const AddTaskContainer({
     super.key,
@@ -38,7 +40,8 @@ class AddTaskContainer extends StatelessWidget {
                     child: const Text("Cancel")),
                 ElevatedButton(
                   onPressed: () {
-                    var task = Task(title: titleController.text);
+                    var task = Task(
+                        id: GUIDGen.generate(), title: titleController.text);
                     context.read<TasksBloc>().add(AddTask(task: task));
                     Navigator.of(context).pop();
                   },
