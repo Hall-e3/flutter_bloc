@@ -38,9 +38,9 @@ class _TasksScreenState extends State<TasksScreen> {
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Center(
+              Center(
                 child: Chip(
-                  label: Text("Tasks:"),
+                  label: Text("Tasks: ${tasksList.length}"),
                 ),
               ),
               TasksList(tasksList: tasksList)

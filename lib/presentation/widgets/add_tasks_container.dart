@@ -41,7 +41,7 @@ class AddTaskContainer extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     var task = Task(
-                        id: GUIDGen.generate(), title: titleController.text);
+                        title: titleController.text, id: GUIDGen.generate());
                     context.read<TasksBloc>().add(AddTask(task: task));
                     Navigator.of(context).pop();
                   },
