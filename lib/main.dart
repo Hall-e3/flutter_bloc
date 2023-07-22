@@ -28,14 +28,18 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => TasksBloc()),
         BlocProvider(create: (context) => SwitchBloc())
       ],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const TasksScreen(),
-        onGenerateRoute: appRoutes.onGenerateRoute,
+      child: BlocBuilder<SwitchBloc, SwitchState>(
+        builder: (context, state) {
+          return MaterialApp(
+            title: 'Flutter Demo',
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            home: const TasksScreen(),
+            onGenerateRoute: appRoutes.onGenerateRoute,
+          );
+        },
       ),
     );
   }

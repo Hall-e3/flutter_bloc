@@ -7,5 +7,10 @@ class SwitchState extends Equatable {
   SwitchState({required this.toggleOnAndOff});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [toggleOnAndOff];
 }
+
+// class SwitchInitial extends SwitchState {
+//   SwitchInitial({required bool toggleOnAndOff})
+//       : super(toggleOnAndOff: toggleOnAndOff);
+// }
