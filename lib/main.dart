@@ -23,8 +23,11 @@ class MyApp extends StatelessWidget {
   final AppRoutes appRoutes;
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<TasksBloc>(
-      create: (_) => TasksBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => TasksBloc()),
+        BlocProvider(create: (context) => SwitchBloc())
+      ],
       child: MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
