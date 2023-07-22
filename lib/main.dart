@@ -1,10 +1,10 @@
-import 'package:bloc_demo/services/app_routes.dart';
 import 'package:flutter/foundation.dart';
 import 'package:bloc_demo/presentation/screens/tasks_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'logic/blocs/bloc_exports.dart';
+import 'presentation/router/app_router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

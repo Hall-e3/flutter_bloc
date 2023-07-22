@@ -1,7 +1,7 @@
-import 'package:bloc_demo/presentation/screens/tasks_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../presentation/screens/recycle_bin.dart';
+import '../screens/recycle_bin.dart';
+import '../screens/tasks_screen.dart';
 
 class AppRoutes {
   Route? onGenerateRoute(RouteSettings routeSettings) {

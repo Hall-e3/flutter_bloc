@@ -2,7 +2,7 @@ import 'package:bloc_demo/data/models/task.dart';
 import 'package:bloc_demo/logic/blocs/bloc_exports.dart';
 import 'package:flutter/material.dart';
 
-import '../../services/uuid_generator.dart';
+import '../services/uuid_generator.dart';
 
 class AddTaskContainer extends StatelessWidget {
   const AddTaskContainer({
