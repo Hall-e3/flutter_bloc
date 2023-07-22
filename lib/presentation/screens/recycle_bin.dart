@@ -24,7 +24,7 @@ class RecycleBin extends StatelessWidget {
             children: [
               Center(
                 child: Chip(
-                  label: Text("${state.removedTasks.length} Tasks"),
+                  label: Text("Tasks: ${state.removedTasks.length}"),
                 ),
               ),
               TasksList(tasksList: state.removedTasks)
