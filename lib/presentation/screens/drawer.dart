@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../logic/blocs/bloc_exports.dart';
 import 'recycle_bin.dart';
-import 'tasks_screen.dart';
+import 'tabs_screen.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -20,8 +20,8 @@ class CustomDrawer extends StatelessWidget {
             BlocBuilder<TasksBloc, TasksState>(
               builder: (context, state) {
                 return GestureDetector(
-                  onTap: () => Navigator.of(context)
-                      .pushReplacementNamed(TasksScreen.id),
+                  onTap: () =>
+                      Navigator.of(context).pushReplacementNamed(TabsScreen.id),
                   child: ListTile(
                     leading: const Icon(Icons.folder_special),
                     title: const Text("My Tasks"),

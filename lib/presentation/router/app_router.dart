@@ -6,8 +6,6 @@ class AppRoutes {
     switch (routeSettings.name) {
       case RecycleBin.id:
         return MaterialPageRoute(builder: (_) => const RecycleBin());
-      case TasksScreen.id:
-        return MaterialPageRoute(builder: (_) => const TasksScreen());
       case TabsScreen.id:
         return MaterialPageRoute(builder: (_) => const TabsScreen());
       default:
