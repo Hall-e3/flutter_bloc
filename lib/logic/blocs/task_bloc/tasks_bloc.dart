@@ -15,21 +15,22 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
   void _onAddTask(AddTask event, Emitter<TasksState> emit) {
     final state = this.state;
     emit(TasksState(
-        allTasks: List.from(state.allTasks)..add(event.task),
+        pendingTasks: List.from(state.pendingTasks)..add(event.task),
         removedTasks: state.removedTasks));
   }
 
   void _onUpdateTask(UpdateTask event, Emitter<TasksState> emit) {
     final state = this.state;
-    List<Task> allTasks = (state.allTasks
+    List<Task> pendingTasks = (state.pendingTasks
         .map((task) => task.id == event.task.id ? event.task : task)).toList();
-    emit(TasksState(allTasks: allTasks, removedTasks: state.removedTasks));
+    emit(TasksState(
+        pendingTasks: pendingTasks, removedTasks: state.removedTasks));
   }
 
   void _onRemoveTask(RemoveTask event, Emitter<TasksState> emit) {
     final state = this.state;
     emit(TasksState(
-        allTasks: List.from(state.allTasks)..remove(event.task),
+        pendingTasks: List.from(state.pendingTasks)..remove(event.task),
         removedTasks: List.from(state.removedTasks)
           ..add(event.task.copyWith(isDeleted: true))));
   }
@@ -37,7 +38,7 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
   void _onDeleteTask(DeleteTask event, Emitter<TasksState> emit) {
     final state = this.state;
     emit(TasksState(
-        allTasks: state.allTasks,
+        pendingTasks: state.pendingTasks,
         removedTasks: (state.removedTasks
             .where((task) => task.id != event.task.id)).toList()));
   }
