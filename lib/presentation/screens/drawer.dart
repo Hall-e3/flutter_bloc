@@ -37,7 +37,7 @@ class CustomDrawer extends StatelessWidget {
                   child: ListTile(
                     leading: const Icon(Icons.delete),
                     title: const Text("Bin"),
-                    trailing: Text("${state.removedTasks}"),
+                    trailing: Text("${state.removedTasks.length}"),
                   ),
                 );
               },
