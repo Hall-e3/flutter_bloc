@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'logic/blocs/bloc_exports.dart';
+import 'presentation/app_theme/theme.dart';
 import 'presentation/router/app_router.dart';
 
 void main() async {
@@ -33,9 +34,9 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             title: 'Flutter Demo',
             debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-              primarySwatch: Colors.blue,
-            ),
+            theme: state.toggleOnAndOff
+                ? AppThemes.appThemeData[AppTheme.darkTheme]
+                : AppThemes.appThemeData[AppTheme.lightTheme],
             home: const TasksScreen(),
             onGenerateRoute: appRoutes.onGenerateRoute,
           );

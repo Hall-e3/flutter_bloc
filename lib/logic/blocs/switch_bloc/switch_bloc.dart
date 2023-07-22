@@ -4,7 +4,7 @@ import '../bloc_exports.dart';
 part 'switch_event.dart';
 part 'switch_state.dart';
 
-class SwitchBloc extends Bloc<SwitchEvent, SwitchState> {
+class SwitchBloc extends HydratedBloc<SwitchEvent, SwitchState> {
   SwitchBloc() : super(SwitchState(toggleOnAndOff: false)) {
     on<ToggleOn>((event, emit) {
       emit(SwitchState(toggleOnAndOff: true));
@@ -13,5 +13,15 @@ class SwitchBloc extends Bloc<SwitchEvent, SwitchState> {
     on<ToggleOff>((event, emit) {
       emit(SwitchState(toggleOnAndOff: false));
     });
+  }
+
+  @override
+  SwitchState? fromJson(Map<String, dynamic> json) {
+    return SwitchState.fromJson(json);
+  }
+
+  @override
+  Map<String, dynamic>? toJson(SwitchState state) {
+    return state.toJson();
   }
 }

@@ -8,9 +8,14 @@ class SwitchState extends Equatable {
 
   @override
   List<Object> get props => [toggleOnAndOff];
-}
 
-// class SwitchInitial extends SwitchState {
-//   SwitchInitial({required bool toggleOnAndOff})
-//       : super(toggleOnAndOff: toggleOnAndOff);
-// }
+  Map<String, dynamic> toJson() {
+    return {
+      "toggleOnAndOff": toggleOnAndOff,
+    };
+  }
+
+  factory SwitchState.fromJson(Map<String, dynamic> json) {
+    return SwitchState(toggleOnAndOff: json['toggleOnAndOff'] ?? false);
+  }
+}

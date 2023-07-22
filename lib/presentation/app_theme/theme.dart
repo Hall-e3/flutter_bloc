@@ -31,7 +31,8 @@ class AppThemes {
           backgroundColor: Colors.grey, unselectedItemColor: Colors.white),
     ),
     AppTheme.lightTheme: ThemeData(
-      primarySwatch: Colors.grey,
+      primaryColorLight: Colors.blue,
+      primarySwatch: Colors.blue,
       primaryColor: Colors.white,
       brightness: Brightness.light,
       colorScheme: const ColorScheme.light(
