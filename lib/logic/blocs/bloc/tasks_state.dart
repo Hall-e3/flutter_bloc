@@ -12,7 +12,7 @@ class TasksState extends Equatable {
   Map<String, dynamic> toJson() {
     return {
       "allTasks": allTasks.map((x) => x.toJson()).toList(),
-      "removedTasks": allTasks.map((x) => x.toJson()).toList(),
+      "removedTasks": removedTasks.map((x) => x.toJson()).toList(),
     };
   }
 
