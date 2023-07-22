@@ -44,7 +44,17 @@ class CustomDrawer extends StatelessWidget {
                 );
               },
             ),
-            Switch(value: false, onChanged: (value) {})
+            BlocBuilder<SwitchBloc, SwitchState>(
+              builder: (context, state) {
+                return Switch(
+                    value: state.toggleOnAndOff,
+                    onChanged: (value) {
+                      value
+                          ? context.read<SwitchBloc>().add(ToggleOn())
+                          : context.read<SwitchBloc>().add(ToggleOff());
+                    });
+              },
+            )
           ],
         ),
       ),
