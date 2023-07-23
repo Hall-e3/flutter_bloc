@@ -5,6 +5,7 @@ class TasksState extends Equatable {
   final List<Task> completedTasks;
   final List<Task> favoriteTasks;
   final List<Task> removedTasks;
+  
   const TasksState(
       {this.pendingTasks = const <Task>[],
       this.removedTasks = const <Task>[],
