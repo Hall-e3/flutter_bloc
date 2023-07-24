@@ -45,11 +45,13 @@ class _TabsScreenState extends State<TabsScreen> {
           ),
           drawer: const CustomDrawer(),
           body: _pageDetails[state.currentItem]['pageName'],
-          floatingActionButton: FloatingActionButton(
-            onPressed: () => _addTask(context),
-            tooltip: 'Add Task',
-            child: const Icon(Icons.add),
-          ),
+          floatingActionButton: state.currentItem == 0
+              ? FloatingActionButton(
+                  onPressed: () => _addTask(context),
+                  tooltip: 'Add Task',
+                  child: const Icon(Icons.add),
+                )
+              : null,
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: state.currentItem,
             onTap: (index) => context.read<AppBloc>()
