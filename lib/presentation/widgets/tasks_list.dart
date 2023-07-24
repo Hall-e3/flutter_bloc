@@ -12,13 +12,26 @@ class TasksList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ExpansionPanelList.radio(
-      children: tasksList
-          .map((task) => ExpansionPanelRadio(
-              value: task.id,
-              headerBuilder: (context, isOpen) => TaskTile(task: task),
-              body: const Text("Description")))
-          .toList(),
+    return Expanded(
+      child: SingleChildScrollView(
+        child: ExpansionPanelList.radio(
+          children: tasksList
+              .map((task) => ExpansionPanelRadio(
+                  value: task.id,
+                  headerBuilder: (context, isOpen) => TaskTile(task: task),
+                  body: SelectableText.rich(TextSpan(children: [
+                    const TextSpan(
+                        text: "Text:\n",
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    TextSpan(text: task.title),
+                    const TextSpan(
+                        text: "\n\nText:\n",
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    TextSpan(text: task.description),
+                  ]))))
+              .toList(),
+        ),
+      ),
     );
   }
 }
