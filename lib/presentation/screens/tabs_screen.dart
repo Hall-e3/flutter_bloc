@@ -36,7 +36,6 @@ class _TabsScreenState extends State<TabsScreen> {
   Widget build(BuildContext context) {
     return BlocBuilder<AppBloc, AppState>(
       builder: (context, state) {
-        print(state.currentItem);
         return Scaffold(
           appBar: AppBar(
             title: Text(_pageDetails[_selectedPageIndex]['title']),

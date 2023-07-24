@@ -12,4 +12,7 @@ class AppBlocEvent extends Equatable {
 class SetCurrentItem extends AppBlocEvent {
   int currentItem;
   SetCurrentItem({required this.currentItem});
+
+  @override
+  List<Object> get props => [currentItem];
 }
