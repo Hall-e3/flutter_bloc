@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../data/models/task.dart';
 import '../../logic/blocs/bloc_exports.dart';
+import 'popup_menu.dart';
 
 class TaskTile extends StatelessWidget {
   final Task task;
@@ -35,20 +37,32 @@ class TaskTile extends StatelessWidget {
                                 ? TextDecoration.lineThrough
                                 : null),
                       ),
-                      Text(DateTime.now().toString()),
+                      Text(DateFormat()
+                          .add_yMMMd()
+                          .add_Hms()
+                          .format(DateTime.parse(task.date))),
                     ],
                   ),
                 ),
               ],
             ),
           ),
-          Checkbox(
-              value: task.isDone,
-              onChanged: (value) {
-                context.read<TasksBloc>().add(UpdateTask(
-                    task: task.copyWith(
-                        isDone: task.isDone == false ? true : false)));
-              })
+          Row(
+            children: [
+              Checkbox(
+                  value: task.isDone,
+                  onChanged: (value) {
+                    context.read<TasksBloc>().add(UpdateTask(
+                        task: task.copyWith(
+                            isDone: task.isDone == false ? true : false)));
+                  }),
+              PopUpMenu(
+                task: task,
+                cancelOrDeleteCallback: () =>
+                    _removeOrDeleteTask(context, task),
+              )
+            ],
+          )
         ],
       ),
     );
@@ -60,22 +74,3 @@ class TaskTile extends StatelessWidget {
         : context.read<TasksBloc>().add(RemoveTask(task: task));
   }
 }
-
-// ListTile(
-//       title: Text(
-//         task.title,
-//         overflow: TextOverflow.ellipsis,
-//         style: TextStyle(
-//             decoration: task.isDone! ? TextDecoration.lineThrough : null),
-//       ),
-//       trailing: task.isDeleted == false
-//           ? Checkbox(
-//               value: task.isDone,
-//               onChanged: (value) {
-//                 context.read<TasksBloc>().add(UpdateTask(
-//                     task: task.copyWith(
-//                         isDone: task.isDone == false ? true : false)));
-//               })
-//           : null,
-//       onLongPress: () => _removeOrDeleteTask(context, task),
-//     );

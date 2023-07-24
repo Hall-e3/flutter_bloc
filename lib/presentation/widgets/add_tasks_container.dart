@@ -1,6 +1,7 @@
 import 'package:bloc_demo/data/models/task.dart';
 import 'package:bloc_demo/logic/blocs/bloc_exports.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../services/uuid_generator.dart';
 
@@ -55,7 +56,8 @@ class AddTaskContainer extends StatelessWidget {
                     var task = Task(
                         id: GUIDGen.generate(),
                         title: titleController.text,
-                        description: descriptionController.text);
+                        description: descriptionController.text,
+                        date: DateTime.now().toString());
                     context.read<TasksBloc>().add(AddTask(task: task));
                     Navigator.of(context).pop();
                   },
