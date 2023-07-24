@@ -22,8 +22,6 @@ class _TabsScreenState extends State<TabsScreen> {
     {"pageName": const FavoriteTasksScreen(), "title": "Favorite Tasks"}
   ];
 
-  var _selectedPageIndex = 0;
-
   void _addTask(BuildContext context) {
     showModalBottomSheet(
         context: context,
@@ -38,7 +36,7 @@ class _TabsScreenState extends State<TabsScreen> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(_pageDetails[_selectedPageIndex]['title']),
+            title: Text(_pageDetails[state.currentItem]['title']),
             actions: [
               IconButton(
                   onPressed: () => _addTask(context),
@@ -46,7 +44,7 @@ class _TabsScreenState extends State<TabsScreen> {
             ],
           ),
           drawer: const CustomDrawer(),
-          body: _pageDetails[_selectedPageIndex]['pageName'],
+          body: _pageDetails[state.currentItem]['pageName'],
           floatingActionButton: FloatingActionButton(
             onPressed: () => _addTask(context),
             tooltip: 'Add Task',
