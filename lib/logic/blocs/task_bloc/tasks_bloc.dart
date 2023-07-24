@@ -14,6 +14,7 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
   }
   void _onAddTask(AddTask event, Emitter<TasksState> emit) {
     final state = this.state;
+    if (event.task.isDone == false) {}
     emit(TasksState(
         pendingTasks: List.from(state.pendingTasks)..add(event.task),
         completedTasks: state.completedTasks,
