@@ -5,9 +5,11 @@ import '../../data/models/task.dart';
 class PopUpMenu extends StatelessWidget {
   final Task task;
   final VoidCallback cancelOrDeleteCallback;
+  final VoidCallback restore;
   const PopUpMenu({
     super.key,
     required this.cancelOrDeleteCallback,
+    required this.restore,
     required this.task,
   });
 
@@ -37,7 +39,7 @@ class PopUpMenu extends StatelessWidget {
                 ]
             : (context) => [
                   PopupMenuItem(
-                      onTap: () {},
+                      onTap: restore,
                       child: TextButton.icon(
                           onPressed: null,
                           icon: const Icon(Icons.restore_from_trash),

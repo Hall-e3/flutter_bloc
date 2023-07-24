@@ -11,6 +11,10 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
     on<UpdateTask>(_onUpdateTask);
     on<DeleteTask>(_onDeleteTask);
     on<RemoveTask>(_onRemoveTask);
+    on<BookMarkTask>(_onBookMarkTask);
+    on<EditTask>(_onEditTask);
+    on<RestoreTask>(_onRestoreTask);
+    on<DeleteAllTasks>(_onDeleteAllTasks);
   }
   void _onAddTask(AddTask event, Emitter<TasksState> emit) {
     final state = this.state;
@@ -61,6 +65,54 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
         favoriteTasks: state.favoriteTasks,
         removedTasks: (state.removedTasks
             .where((task) => task.id != event.task.id)).toList()));
+  }
+
+  void _onBookMarkTask(BookMarkTask event, Emitter<TasksState> emit) {
+    final state = this.state;
+    emit(TasksState(
+        pendingTasks: state.pendingTasks,
+        completedTasks: state.completedTasks,
+        favoriteTasks: state.favoriteTasks,
+        removedTasks: (state.removedTasks
+            .where((task) => task.id != event.task.id)).toList()));
+  }
+
+  void _onEditTask(EditTask event, Emitter<TasksState> emit) {
+    final state = this.state;
+    emit(TasksState(
+        pendingTasks: state.pendingTasks,
+        completedTasks: state.completedTasks,
+        favoriteTasks: state.favoriteTasks,
+        removedTasks: (state.removedTasks
+            .where((task) => task.id != event.task.id)).toList()));
+  }
+
+  void _onRestoreTask(RestoreTask event, Emitter<TasksState> emit) {
+    final state = this.state;
+    List<Task> pendingTasks = (state.pendingTasks
+        .map((task) => task.id == event.task.id ? event.task : task)).toList();
+
+    print(event.task);
+
+    // if (event.task.isDone == false) {
+    //   pendingTasks.remove(event.task);
+    // } else {
+    //   pendingTasks.add(event.task);
+    // }
+
+    emit(TasksState(
+        favoriteTasks: state.favoriteTasks,
+        pendingTasks: pendingTasks,
+        removedTasks: state.removedTasks));
+  }
+
+  void _onDeleteAllTasks(DeleteAllTasks event, Emitter<TasksState> emit) {
+    final state = this.state;
+    emit(TasksState(
+        pendingTasks: state.pendingTasks,
+        completedTasks: state.completedTasks,
+        favoriteTasks: state.favoriteTasks,
+        removedTasks: event.allTasks));
   }
 
   @override

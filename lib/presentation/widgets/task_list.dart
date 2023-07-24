@@ -53,6 +53,9 @@ class TaskTile extends StatelessWidget {
                             isDone: task.isDone == false ? true : false)));
                   }),
               PopUpMenu(
+                restore: () => context.read<TasksBloc>().add(RestoreTask(
+                    task: task.copyWith(
+                        isDeleted: task.isDeleted == true ? false : true))),
                 task: task,
                 cancelOrDeleteCallback: () =>
                     _removeOrDeleteTask(context, task),
