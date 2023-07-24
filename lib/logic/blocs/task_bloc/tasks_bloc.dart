@@ -23,15 +23,17 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
 
   void _onUpdateTask(UpdateTask event, Emitter<TasksState> emit) {
     final state = this.state;
-    List<Task> completedTasks = List.from(state.completedTasks);
     List<Task> pendingTasks = (state.pendingTasks
         .map((task) => task.id == event.task.id ? event.task : task)).toList();
-    // if (event.task.isDone == true) {
-    //   pendingTasks.remove(event.task);
-    // } else {
-    //   pendingTasks.add(event.task);
-    //   completedTasks.remove(event.task);
-    // }
+    List<Task> completedTasks = (state.completedTasks
+        .map((task) => task.id == event.task.id ? event.task : task)).toList();
+    if (event.task.isDone == true) {
+      pendingTasks.remove(event.task);
+      completedTasks.add(event.task);
+    } else {
+      pendingTasks.add(event.task);
+      completedTasks.remove(event.task);
+    }
 
     emit(TasksState(
         completedTasks: completedTasks,
