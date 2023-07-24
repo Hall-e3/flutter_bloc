@@ -57,7 +57,10 @@ class AddTaskContainer extends StatelessWidget {
                         id: GUIDGen.generate(),
                         title: titleController.text,
                         description: descriptionController.text,
-                        date: DateTime.now().toString());
+                        date: DateFormat()
+                            .add_yMMMd()
+                            .add_Hms()
+                            .format(DateTime.now()));
                     context.read<TasksBloc>().add(AddTask(task: task));
                     Navigator.of(context).pop();
                   },

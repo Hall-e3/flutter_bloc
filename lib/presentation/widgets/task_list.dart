@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../../data/models/task.dart';
 import '../../logic/blocs/bloc_exports.dart';
@@ -37,10 +36,7 @@ class TaskTile extends StatelessWidget {
                                 ? TextDecoration.lineThrough
                                 : null),
                       ),
-                      Text(DateFormat()
-                          .add_yMMMd()
-                          .add_Hms()
-                          .format(DateTime.parse(task.date))),
+                      Text(task.date),
                     ],
                   ),
                 ),
