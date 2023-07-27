@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../data/models/task.dart';
 import '../../logic/blocs/bloc_exports.dart';
+import '../../logic/blocs/task_bloc/tasks_state.dart';
 
 // ignore: must_be_immutable
 class TasksScreen extends StatelessWidget {

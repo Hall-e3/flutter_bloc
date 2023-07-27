@@ -7,12 +7,12 @@ class TasksEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class LoadTask extends TasksEvent {
-  final Task task;
-  const LoadTask({required this.task});
+class LoadTasks extends TasksEvent {
+  final List<Task> allTasks;
+  const LoadTasks({required this.allTasks});
 
   @override
-  List<Object> get props => [task];
+  List<Object> get props => [allTasks];
 }
 
 class AddTask extends TasksEvent {
@@ -31,7 +31,6 @@ class UpdateTask extends TasksEvent {
   List<Object> get props => [task];
 }
 
-
 class DeleteTask extends TasksEvent {
   final Task task;
   const DeleteTask({required this.task});
@@ -39,9 +38,3 @@ class DeleteTask extends TasksEvent {
   @override
   List<Object> get props => [task];
 }
-
-
-
-
-
-
