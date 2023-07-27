@@ -6,11 +6,13 @@ class PopUpMenu extends StatelessWidget {
   final Task task;
   final VoidCallback cancelOrDeleteCallback;
   final VoidCallback restore;
+  final VoidCallback bookMark;
   const PopUpMenu({
     super.key,
     required this.cancelOrDeleteCallback,
     required this.restore,
     required this.task,
+    required this.bookMark,
   });
 
   @override
@@ -19,10 +21,12 @@ class PopUpMenu extends StatelessWidget {
         itemBuilder: task.isDeleted == false
             ? (context) => [
                   PopupMenuItem(
-                      onTap: () {},
+                      onTap: bookMark,
                       child: TextButton.icon(
                           onPressed: null,
-                          icon: const Icon(Icons.bookmark),
+                          icon: Icon(task.isFavorite == true
+                              ? Icons.bookmark
+                              : Icons.bookmark_outlined),
                           label: const Text('Add to Bookmarks'))),
                   PopupMenuItem(
                       onTap: () {},

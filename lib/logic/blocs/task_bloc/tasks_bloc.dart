@@ -69,12 +69,24 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
 
   void _onBookMarkTask(BookMarkTask event, Emitter<TasksState> emit) {
     final state = this.state;
+    List<Task> pendingTasks = (state.pendingTasks
+        .map((task) => task.id == event.task.id ? event.task : task)).toList();
+    List<Task> favoriteTasks = (state.favoriteTasks
+        .map((task) => task.id == event.task.id ? event.task : task)).toList();
+    print(event.task.isFavorite);
+    if (event.task.isFavorite == true) {
+      pendingTasks.remove(event.task);
+      favoriteTasks.add(event.task);
+    } else {
+      pendingTasks.add(event.task);
+      favoriteTasks.remove(event.task);
+    }
+
     emit(TasksState(
-        pendingTasks: state.pendingTasks,
         completedTasks: state.completedTasks,
         favoriteTasks: state.favoriteTasks,
-        removedTasks: (state.removedTasks
-            .where((task) => task.id != event.task.id)).toList()));
+        pendingTasks: pendingTasks,
+        removedTasks: state.removedTasks));
   }
 
   void _onEditTask(EditTask event, Emitter<TasksState> emit) {
